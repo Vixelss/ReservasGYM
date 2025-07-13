@@ -1,27 +1,13 @@
-    
+import axios from 'axios';
 
-export async function registrar(nombre, correo, password) {
-  const res = await fetch(`${API_URL}/registro`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nombre, correo, password })
-  });
-  return await res.json();
-}
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4000/api',
+});
 
-export async function obtenerClases() {
-  const res = await fetch(`${API_URL}/servicios`);
-  return await res.json();
-}
+api.interceptors.request.use(cfg => {
+  const t = localStorage.getItem('token');
+  if (t) cfg.headers.Authorization = `Bearer ${t}`;
+  return cfg;
+});
 
-export async function login(correo, password) {
-  const res = await fetch('http://localhost:4000/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ correo, password }),
-  });
-
-  return res.json(); // ← aquí ya regresa el token y el rol
-}
+export default api;

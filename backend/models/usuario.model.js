@@ -1,16 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("Usuario", {
-    id_usuario: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  const Usuario = sequelize.define(
+    "Usuario",
+    {
+      id_usuario: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      nombre:     DataTypes.STRING,
+      email:      DataTypes.STRING,
+      password_hash: DataTypes.STRING,
+      id_role:    DataTypes.INTEGER
     },
-    nombre: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password_hash: DataTypes.STRING,
-    id_role: DataTypes.INTEGER  // 👈 aquí está el cambio
-  }, {
-    tableName: "usuarios",
-    timestamps: false
-  });
+    { tableName: "usuarios", timestamps: false }
+  );
+
+  Usuario.associate = (models) => {
+    Usuario.belongsTo(models.Rol,    { foreignKey: "id_role" });
+    Usuario.hasMany(models.Reserva,  { foreignKey: "id_usuario" });
+  };
+
+  return Usuario;
 };

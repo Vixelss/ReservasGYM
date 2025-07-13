@@ -1,0 +1,64 @@
+.admin-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-nav button {
+  background-color: #0f766e;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.admin-nav button:hover {
+  background-color: #115e59;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+input {
+  padding: 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: #fff;
+}
+
+hr {
+  margin: 20px 0;
+  border: 1px solid #333;
+}

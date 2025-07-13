@@ -1,0 +1,14 @@
+:root{
+  /* Colores base */
+  --bg: #0e0e0e;
+  --bg-card: #1d1d1d;
+  --primary: #00c896;
+  --text: #f1f1f1;
+
+  /* UI */
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0,0,0,.45);
+  --max-w: 1100px;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+}

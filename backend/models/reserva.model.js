@@ -1,11 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("Reserva", {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    usuario_id: { type: DataTypes.INTEGER, allowNull: false },
-    horario_id: { type: DataTypes.INTEGER, allowNull: false },
-    fecha_reserva: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW }
-  }, {
-    tableName: "reservas",
-    timestamps: false
-  });
+  const Reserva = sequelize.define(
+    "Reserva",
+    {
+      id_reserva: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      id_usuario: DataTypes.INTEGER,
+      id_horario: DataTypes.INTEGER,
+      fecha_reserva: DataTypes.DATEONLY
+    },
+    { tableName: "reservas", timestamps: false }
+  );
+
+  Reserva.associate = (models) => {
+    Reserva.belongsTo(models.Usuario, { foreignKey: "id_usuario" });
+    Reserva.belongsTo(models.Horario, { foreignKey: "id_horario" });
+  };
+
+  return Reserva;
 };
+

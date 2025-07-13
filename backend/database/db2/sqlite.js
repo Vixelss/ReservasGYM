@@ -1,8 +1,9 @@
 const { Sequelize } = require('sequelize');
+const path = require('path');
 
 const sqliteDB = new Sequelize({
   dialect: 'sqlite',
-  storage: './backend/database/db2/reservas_aux.db',
+  storage: path.resolve(__dirname, 'reservas_aux.db'), // ruta absoluta segura
   logging: false
 });
 
