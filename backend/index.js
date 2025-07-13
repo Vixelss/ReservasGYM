@@ -22,7 +22,7 @@ app.use('/api/clases', require('./routes/clases'));
 app.use('/api/servicios', require('./routes/servicios'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 
-// ✅ Rutas SQLite (logs, contacto, opiniones, estadisticas)
+// ✅ Rutas SQLite
 app.use('/api/opiniones', require('./routes/sqlite/opiniones'));
 app.use('/api/contacto', require('./routes/sqlite/contacto'));
 app.use('/api/logs', require('./routes/sqlite/logs'));
@@ -41,6 +41,11 @@ app.get('/', (req, res) => {
 
     await sqliteDB.authenticate();
     console.log('✅ Conectado a SQLite');
+
+    // 🧩 Crear tablas MySQL automáticamente
+    require('./models'); // asegúrate de que importa todos tus modelos
+    await mysqlDB.sync(); // usar solo una vez
+
 
     const PORT = process.env.PORT || 4000;
     app.listen(PORT, () => console.log(`🚀 Servidor en http://localhost:${PORT}`));
